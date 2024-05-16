@@ -14,12 +14,12 @@ exports[`Storyshots Pod/PodLogs Logs 1`] = `
         class="MuiBox-root css-p0cik4"
       >
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall css-w7fpvq-MuiButtonBase-root-MuiButton-root"
+          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeSmall MuiButton-textSizeSmall MuiButton-colorPrimary css-w7fpvq-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
           type="button"
         >
           <span
-            class="MuiButton-startIcon MuiButton-iconSizeSmall css-y6rp3m-MuiButton-startIcon"
+            class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeSmall css-y6rp3m-MuiButton-startIcon"
           >
             <span />
           </span>
@@ -723,11 +723,33 @@ exports[`Storyshots Pod/PodLogs Logs 1`] = `
                 <dd
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-8 makeStyles-metadataCell css-r0umuq-MuiGrid-root"
                 >
-                  <span
-                    class="MuiTypography-root MuiTypography-body1 makeStyles-statusLabel css-1ezega9-MuiTypography-root"
-                    style="background-color: rgb(248, 255, 240); color: rgb(46, 125, 50);"
+                  <div
+                    class="MuiBox-root css-0"
                   >
-                    Running
+                    <div
+                      class="MuiBox-root css-0"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-body1 makeStyles-statusLabel css-1ezega9-MuiTypography-root"
+                        style="background-color: rgb(248, 255, 240); color: rgb(46, 125, 50);"
+                      >
+                        Running
+                      </span>
+                    </div>
+                  </div>
+                </dd>
+                <dt
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4 makeStyles-metadataNameCell css-1r6indk-MuiGrid-root"
+                >
+                  Started
+                </dt>
+                <dd
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-8 makeStyles-metadataCell css-r0umuq-MuiGrid-root"
+                >
+                  <span
+                    class="MuiTypography-root MuiTypography-body1 css-1qti38g-MuiTypography-root"
+                  >
+                    2022-01-01T00:05:00.000Z
                   </span>
                 </dd>
                 <dt
