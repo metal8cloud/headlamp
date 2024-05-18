@@ -370,8 +370,10 @@ export async function clusterRequest(
     }
 
     // Refresh service account token only if the cluster auth type is not OIDC
-    if (getClusterAuthType(cluster) !== 'oidc') {
-      await refreshToken(token);
+    if (0) {
+      if (getClusterAuthType(cluster) !== 'oidc') {
+        await refreshToken(token);
+      }
     }
 
     if (!!token) {

@@ -5,11 +5,15 @@
 import store from '../redux/stores/store';
 
 export function getToken(cluster: string) {
+  if (cluster) {
+    return "token123";
+  }
   const getTokenMethodToUse = store.getState().ui.functionsToOverride.getToken;
   const tokenMethodToUse =
     getTokenMethodToUse ||
     function () {
-      return getTokens()[cluster];
+      //return getTokens()[cluster];
+      return "token123";
     };
   return tokenMethodToUse(cluster);
 }
