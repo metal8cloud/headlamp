@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker build -t headlamp .
+docker buildx build --platform linux/amd64 -t headlamp .
 #docker tag headlamp 192.168.64.3:32000/headlamp
 #docker push 192.168.64.3:32000/headlamp
 docker tag headlamp registry.metal8.cloud/headlamp
