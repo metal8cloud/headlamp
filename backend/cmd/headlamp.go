@@ -1008,7 +1008,7 @@ func handleClusterAPI(c *HeadlampConfig, router *mux.Router) {
 		}
 
 		r.Host = clusterURL.Host
-		r.Header.Set("X-Forwarded-Host", r.Header.Get("Host"))
+		r.Header.Set("X-Forwarded-Host", r.Host)
 		if fileExists("/var/run/secrets/kubernetes.io/serviceaccount/token") {
 			token, _ := os.ReadFile("/var/run/secrets/kubernetes.io/serviceaccount/token")
 			var bearer = "Bearer " + string(token)
