@@ -677,7 +677,6 @@ func parseClusterAndToken(r *http.Request) (string, string) {
 	// get token
 	token := r.Header.Get("Authorization")
 	token = strings.TrimPrefix(token, "Bearer ")
-
 	return cluster, token
 }
 
@@ -804,41 +803,43 @@ func (c *HeadlampConfig) OIDCTokenRefreshMiddleware(next http.Handler) http.Hand
 			return
 		}
 
-		// get oidc config
-		kContext, err := c.kubeConfigStore.GetContext(cluster)
-		if err != nil {
-			logger.Log(logger.LevelError, map[string]string{"cluster": cluster},
-				err, "failed to get context")
-			next.ServeHTTP(w, r)
+		/*
+			// get oidc config
+			kContext, err := c.kubeConfigStore.GetContext(cluster)
+			if err != nil {
+				logger.Log(logger.LevelError, map[string]string{"cluster": cluster},
+					err, "failed to get context")
+				next.ServeHTTP(w, r)
 
-			return
-		}
+				return
+			}
 
-		// skip if cluster is not using OIDC auth
-		oidcAuthConfig, err := kContext.OidcConfig()
-		if err != nil {
-			logger.Log(logger.LevelError, map[string]string{"cluster": cluster},
-				err, "failed to get oidc config")
-			next.ServeHTTP(w, r)
+			// skip if cluster is not using OIDC auth
+			oidcAuthConfig, err := kContext.OidcConfig()
+			if err != nil {
+				logger.Log(logger.LevelError, map[string]string{"cluster": cluster},
+					err, "failed to get oidc config")
+				next.ServeHTTP(w, r)
 
-			return
-		}
+				return
+			}
 
-		// skip if token is not about to expire
-		if !isTokenAboutToExpire(token) {
-			next.ServeHTTP(w, r)
-			return
-		}
+			// skip if token is not about to expire
+			if !isTokenAboutToExpire(token) {
+				next.ServeHTTP(w, r)
+				return
+			}
 
-		// refresh and cache new token
-		newToken, err := refreshAndCacheNewToken(oidcAuthConfig, c.cache, token)
-		if err != nil {
-			logger.Log(logger.LevelError, map[string]string{"cluster": cluster},
-				err, "failed to refresh token")
-		}
-		if newToken != "" {
-			w.Header().Set("X-Authorization", newToken)
-		}
+			// refresh and cache new token
+			newToken, err := refreshAndCacheNewToken(oidcAuthConfig, c.cache, token)
+			if err != nil {
+				logger.Log(logger.LevelError, map[string]string{"cluster": cluster},
+					err, "failed to refresh token")
+			}
+			if newToken != "" {
+				w.Header().Set("X-Authorization", newToken)
+			}
+		*/
 		next.ServeHTTP(w, r)
 	})
 }
@@ -1008,9 +1009,16 @@ func handleClusterAPI(c *HeadlampConfig, router *mux.Router) {
 
 		r.Host = clusterURL.Host
 		r.Header.Set("X-Forwarded-Host", r.Host)
+		if fileExists("/var/run/secrets/kubernetes.io/serviceaccount/token") {
+			token, _ := os.ReadFile("/var/run/secrets/kubernetes.io/serviceaccount/token")
+			var bearer = "Bearer " + string(token)
+			r.Header.Set("Authorization", bearer)
+		}
 		r.URL.Host = clusterURL.Host
 		r.URL.Path = mux.Vars(r)["api"]
 		r.URL.Scheme = clusterURL.Scheme
+
+		logger.Log(logger.LevelError, nil, nil, "KUBE API: "+r.URL.Path)
 
 		plugins.HandlePluginReload(c.cache, w)
 

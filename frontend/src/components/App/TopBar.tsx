@@ -33,7 +33,7 @@ import ErrorBoundary from '../common/ErrorBoundary';
 import { drawerWidth } from '../Sidebar';
 import HeadlampButton from '../Sidebar/HeadlampButton';
 import { setWhetherSidebarOpen } from '../Sidebar/sidebarSlice';
-import { AppLogo } from './AppLogo';
+//import { AppLogo } from './AppLogo';
 
 export interface TopBarProps {}
 
@@ -423,7 +423,9 @@ export function PureTopBar({
             </>
           ) : (
             <>
-              <AppLogo />
+              <a href="/c/main/" style={{ color:"#fff"}}>Kubernetes Dashboard</a>&nbsp;&nbsp;&nbsp;
+              <a href="/registry-ui/" style={{ color:"#fff"}}>Registry</a>&nbsp;&nbsp;&nbsp;
+              <a href="/grafana/" style={{ color:"#fff"}}>Grafana</a>
               <Box sx={{ flexGrow: 1 }} />
               <AppBarActions
                 appBarActions={processAppBarActions(allAppBarActions, appBarActionsProcessors)}
