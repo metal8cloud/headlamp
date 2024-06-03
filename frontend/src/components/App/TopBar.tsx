@@ -423,9 +423,9 @@ export function PureTopBar({
             </>
           ) : (
             <>
-              <a href="/c/main/" style={{ color:"#fff"}}>Kubernetes Dashboard</a>&nbsp;&nbsp;&nbsp;
-              <a href="/registry-ui/" style={{ color:"#fff"}}>Registry</a>&nbsp;&nbsp;&nbsp;
-              <a href="/grafana/" style={{ color:"#fff"}}>Grafana</a>
+              <a href="/c/main/" style={{ color:"unset"}}>Kubernetes Dashboard</a>&nbsp;&nbsp;&nbsp;
+              <a href="/registry-ui/" style={{ color:"unset"}}>Registry</a>&nbsp;&nbsp;&nbsp;
+              <a href="/grafana/" style={{ color:"unset"}}>Grafana</a>
               <Box sx={{ flexGrow: 1 }} />
               <AppBarActions
                 appBarActions={processAppBarActions(allAppBarActions, appBarActionsProcessors)}
